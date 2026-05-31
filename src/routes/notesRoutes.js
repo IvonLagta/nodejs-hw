@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import {
-	createNote,
-	deleteNote,
-	getAllNotes,
-	getNoteById,
-	updateNote,
+  createNote,
+  deleteNote,
+  getAllNotes,
+  getNoteById,
+  updateNote,
 } from '../controllers/notesController.js';
 
 const notesRouter = Router();
@@ -16,4 +16,3 @@ notesRouter.delete('/notes/:noteId', deleteNote);
 notesRouter.patch('/notes/:noteId', updateNote);
 
 export default notesRouter;
-
