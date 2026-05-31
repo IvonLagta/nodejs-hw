@@ -11,7 +11,7 @@ const parsePaginationNumber = (value, defaultValue) => {
   return parsedValue;
 };
 
-export const getNotes = async (req, res) => {
+export const getAllNotes = async (req, res) => {
   const { tag, search } = req.query;
   const page = parsePaginationNumber(req.query.page, 1);
   const perPage = parsePaginationNumber(req.query.perPage, 10);
@@ -64,7 +64,7 @@ export const createNote = async (req, res) => {
 export const updateNote = async (req, res) => {
   const { noteId } = req.params;
   const note = await Note.findByIdAndUpdate(noteId, req.body, {
-    new: true,
+    returnDocument: 'after',
     runValidators: true,
   });
 
@@ -83,5 +83,5 @@ export const deleteNote = async (req, res) => {
     throw createHttpError(404, 'Note not found');
   }
 
-  res.status(204).send();
+  res.status(200).json(note);
 };
